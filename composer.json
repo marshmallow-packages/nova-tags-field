@@ -1,0 +1,49 @@
+{
+    "name": "marshmallow/nova-tags-field",
+    "description": "A tags field for Nova apps",
+    "keywords": [
+        "laravel",
+        "nova",
+        "marshmallow",
+        "tag field"
+    ],
+    "homepage": "https://gitlab.com/marshmallow-packages/nova/tags-field",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Stef van Esch",
+            "email": "stef@marshmallow.dev",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=7.1.0"
+    },
+    "require-dev": {
+        "mockery/mockery": "^1.1",
+        "orchestra/testbench": "^5.0",
+        "phpunit/phpunit": "^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Marshmallow\\TagsField\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Marshmallow\\TagsField\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Marshmallow\\TagsField\\TagsFieldServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
