@@ -5,6 +5,7 @@
                 :is="component"
                 :name="field.attribute"
                 :type="field.type"
+                :field="field"
                 :suggestion-limit="field.suggestionLimit"
                 :errors="errors"
                 v-model="tags"
@@ -38,7 +39,6 @@ export default {
 
     computed: {
         component() {
-        	console.log(123)
             return this.field.multiple ? 'multi-tags-input' : 'single-tags-input';
         },
     },

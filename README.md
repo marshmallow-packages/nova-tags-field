@@ -25,5 +25,15 @@ protected $casts = [
 ];
 ```
 
+## Options
+```php
+use Marshmallow\TagsField\Tags;
+
+public function fields(Request $request)
+{
+    Tags::make('Tags')->addMoreText('Add another...'),
+}
+```
+
 ## License:
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.

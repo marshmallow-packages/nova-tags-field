@@ -18,6 +18,18 @@ class Tags extends Field
     {
         parent::__construct($name, $attribute, $resolveCallback);
         $this->multiple();
+
+        $this->withMeta([
+            'add_more_text' => __('Add tag...'),
+        ]);
+    }
+
+    public function addMoreText($text)
+    {
+        $this->withMeta([
+            'add_more_text' => $text,
+        ]);
+        return $this;
     }
 
     public function type(string $type)
@@ -115,6 +127,9 @@ class Tags extends Field
 	            return $tag->name;
 	        })->values();
     	} else {
+            if (!isset($resource->getAttributes()[$attribute])) {
+                return [];
+            }
     		return json_decode($resource->getAttributes()[$attribute], true);
     	}
     }

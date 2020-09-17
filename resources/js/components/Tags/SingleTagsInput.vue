@@ -22,7 +22,7 @@
 
 <script>
 export default {
-    props: ['tags', 'type', 'name', 'suggestionLimit', 'errors'],
+    props: ['tags', 'type', 'field', 'name', 'suggestionLimit', 'errors'],
 
     model: {
         prop: 'tags',

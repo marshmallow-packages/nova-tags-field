@@ -20,7 +20,7 @@
                 <input
                     ref="input"
                     class="tags-input-text"
-                    :placeholder="__('Add tag...')"
+                    :placeholder="field.add_more_text"
                     v-bind="inputProps"
                     v-on="inputEvents"
                 >
@@ -45,7 +45,7 @@
 import TagsInput from './TagsInput.vue';
 
 export default {
-    props: ['name', 'tags', 'type', 'suggestionLimit', 'errors'],
+    props: ['name', 'tags', 'type', 'field', 'suggestionLimit', 'errors'],
 
     model: {
         prop: 'tags',
