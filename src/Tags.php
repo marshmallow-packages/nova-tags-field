@@ -29,6 +29,7 @@ class Tags extends Field
         $this->withMeta([
             'add_more_text' => $text,
         ]);
+
         return $this;
     }
 
@@ -103,34 +104,35 @@ class Tags extends Field
         $tagNames = array_filter($tagNames);
 
         if ($this->taggable_resource) {
-	        $class = get_class($model);
+            $class = get_class($model);
 
-	        $class::saved(function ($model) use ($tagNames) {
-	            $model->syncTagsWithType($tagNames, $this->meta()['type'] ?? null);
-	        });
-	    } else {
-	    	$model->$attribute = $tagNames;
-	    	$model->update();
-	    }
+            $class::saved(function ($model) use ($tagNames) {
+                $model->syncTagsWithType($tagNames, $this->meta()['type'] ?? null);
+            });
+        } else {
+            $model->$attribute = $tagNames;
+            $model->update();
+        }
     }
 
     public function resolveAttribute($resource, $attribute = null)
     {
-    	if ($this->taggable_resource) {
-    		$tags = $resource->tags;
+        if ($this->taggable_resource) {
+            $tags = $resource->tags;
 
-	        if (Arr::has($this->meta(), 'type')) {
-	            $tags = $tags->where('type', $this->meta()['type']);
-	        }
+            if (Arr::has($this->meta(), 'type')) {
+                $tags = $tags->where('type', $this->meta()['type']);
+            }
 
-	        return $tags->map(function (Tag $tag) {
-	            return $tag->name;
-	        })->values();
-    	} else {
-            if (!isset($resource->getAttributes()[$attribute])) {
+            return $tags->map(function (Tag $tag) {
+                return $tag->name;
+            })->values();
+        } else {
+            if (! isset($resource->getAttributes()[$attribute])) {
                 return [];
             }
-    		return json_decode($resource->getAttributes()[$attribute], true);
-    	}
+
+            return json_decode($resource->getAttributes()[$attribute], true);
+        }
     }
 }
