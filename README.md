@@ -58,6 +58,7 @@ If you discover any security related issues, please email stef@marshmallow.dev i
 ## Credits
 
 - [All Contributors](../../contributors)
+- Package is based on [nova-tags-field from Spatie](https://github.com/spatie/nova-tags-field)
 
 ## License
 
