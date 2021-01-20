@@ -19,6 +19,10 @@ export default {
     },
 
     created() {
+        if (this.tags === null) {
+            this.tags = [];
+            this.$emit('input', [...this.tags, null]);
+        }
         this.throttledGetSuggested = window._.throttle(this.getSuggested, 400);
     },
 
@@ -30,10 +34,6 @@ export default {
 
     methods: {
         addTag() {
-        	if (!this.tags) {
-        		this.tags = ''
-        	}
-
             if (this.newTag.length === 0 || this.tags.includes(this.newTag)) {
                 return;
             }
@@ -117,9 +117,10 @@ export default {
             },
             inputEvents: {
                 input: e => {
-                    this.input = e.target.value;
-
-                    this.throttledGetSuggested();
+                    if (e.target.value) {
+                        this.input = e.target.value;
+                        this.throttledGetSuggested();
+                    }
                 },
                 keydown: e => {
                     if (e.key === 'Backspace' && this.removeOnBackspace) {

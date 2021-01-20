@@ -57,11 +57,17 @@ export default {
 
     methods: {
         focusInput() {
-            this.$refs.input.focus();
+            if (this.$refs.input) {
+                this.$refs.input.focus();
+            }
         },
 
         handleInput(tags) {
-            this.$emit('input', tags);
+            var filtered = tags.filter(function (el) {
+              return el != null;
+            });
+
+            this.$emit('input', filtered);
 
             // Re-focus the input after a suggestion was inserted
             this.focusInput();
