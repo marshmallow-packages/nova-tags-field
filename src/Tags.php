@@ -10,6 +10,8 @@ use Marshmallow\Tags\Tag;
 
 class Tags extends Field
 {
+    public const EXPLODE_BY = '-----';
+
     public $component = 'marshmallow-nova-tags-field';
 
     protected $taggable_resource = null;
@@ -100,7 +102,7 @@ class Tags extends Field
     protected function fillAttributeFromRequest(NovaRequest $request, $requestAttribute, $model, $attribute)
     {
         $requestValue = $request[$requestAttribute];
-        $tagNames = explode('-----', $requestValue);
+        $tagNames = explode(self::EXPLODE_BY, $requestValue);
         $tagNames = array_filter($tagNames);
 
         if ($this->taggable_resource) {
